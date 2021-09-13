@@ -2,24 +2,31 @@ package com.bridgelabz.hotelreservation;
 
 public class Rate
 {
-	private int weekday;
-	private int weekend;
-	public Rate(int weekday, int weekend) {
+	private int weekdayRate;
+	private int weekendRate;
+	
+	public Rate(int weekdayRate, int weekendRate) 
+	{
 		super();
-		this.weekday = weekday;
-		this.weekend = weekend;
+		this.weekdayRate = weekdayRate;
+		this.weekendRate = weekendRate;
 	}
-	public int getWeekday() {
-		return weekday;
+
+	public int getWeekdayRate() {
+		return weekdayRate;
 	}
-	public void setWeekday(int weekday) {
-		this.weekday = weekday;
+
+	public void setWeekdayRate(int weekdayRate) {
+		this.weekdayRate = weekdayRate;
 	}
-	public int getWeekend() {
-		return weekend;
+
+	public int getWeekendRate() {
+		return weekendRate;
 	}
-	public void setWeekend(int weekend) {
-		this.weekend = weekend;
+
+	public void setWeekendRate(int weekendRate) {
+		this.weekendRate = weekendRate;
 	}
+	
 	
 }

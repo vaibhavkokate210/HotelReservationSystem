@@ -18,7 +18,7 @@ public class HotelReservationTest
 	Hotel bridgewood;
 	Hotel ridgewood;
 	
-	@Test
+	@Before
 	public void add_HotelIn_HotelReservationSystem()
 	{
 		hotelReservation=new HotelReservation();
@@ -47,6 +47,14 @@ public class HotelReservationTest
 		
 		size=hotelReservation.sizeOfList();
 		Assert.assertEquals(3, size);
+	}
+	
+	@Test
+	public void find_CheapestHotel_ForGivenDate()
+	{
+		String cheapHotel=hotelReservation.findCheapestHotel(CustomerType.REGULAR,"10Sep2020","11Sep2020");
+		Assert.assertEquals("Lakewood 220", cheapHotel);
+		System.out.println(cheapHotel);
 	}
     
 }
