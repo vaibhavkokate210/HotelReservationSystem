@@ -80,4 +80,59 @@ public class HotelReservation
 		}
 		return name+" "+cheapestRate;
 	}
+	
+	public String findCheapestTopRatedHotel(CustomerType type, String startDate, String endDate) 
+	{
+		int weekDay=0,weekEnd=0;
+		int cheapestRate=0;
+		String name = null;
+		int topRating=0;
+		LocalDate startLocalDate=LocalDate.parse(startDate, FORMATTER);
+		LocalDate endLocalDate=LocalDate.parse(endDate, FORMATTER);
+		
+    	for (LocalDate date = startLocalDate; date.isBefore(endLocalDate.plusDays(1)); date = date.plusDays(1))
+		{
+    		DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
+    	      switch(day) 
+    	      {
+    	         case SATURDAY:
+    	                     weekEnd++;
+    	                     break;
+    	         case SUNDAY:
+    	        	        weekEnd++;
+    	        	        break;
+    	         default:
+    	        	       weekDay++;
+    	        	       break;
+    	      }
+		}
+    	
+		Iterator<Hotel> itr=hotel.iterator();
+		while(itr.hasNext())
+		{
+			Hotel getHotel=itr.next();
+			Map<CustomerType,Rate> rate=getHotel.getRate();
+			for(Map.Entry<CustomerType,Rate> entry:rate.entrySet())
+			{
+				if(entry.getKey().equals(type))
+				{
+					Rate cost=entry.getValue();
+					int total=weekDay*cost.getWeekdayRate()+weekEnd*cost.getWeekendRate();
+					if(cheapestRate==0||topRating<getHotel.getRating())
+					{
+						cheapestRate=total;
+						name=getHotel.getName();
+						topRating=getHotel.getRating();
+					}
+					if(total<cheapestRate||topRating<getHotel.getRating())
+					{
+						cheapestRate=total;
+						name=getHotel.getName();
+						topRating=getHotel.getRating();
+					}
+				}
+			}
+		}
+		return name+" "+cheapestRate+" "+topRating;
+	}
 }
