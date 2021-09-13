@@ -107,32 +107,21 @@ public class HotelReservation
     	      }
 		}
     	
-		Iterator<Hotel> itr=hotel.iterator();
-		while(itr.hasNext())
+    	hotel.stream().iterator().next().getRate().entrySet().stream().forEach(e->{if(e.getKey().equals(type))
 		{
-			Hotel getHotel=itr.next();
-			Map<CustomerType,Rate> rate=getHotel.getRate();
-			for(Map.Entry<CustomerType,Rate> entry:rate.entrySet())
+			Rate cost=e.getValue();
+			int total=weekDay*cost.getWeekdayRate()+weekEnd*cost.getWeekendRate();
+			if(cheapestRate==0)
 			{
-				if(entry.getKey().equals(type))
-				{
-					Rate cost=entry.getValue();
-					int total=weekDay*cost.getWeekdayRate()+weekEnd*cost.getWeekendRate();
-					if(cheapestRate==0||topRating<getHotel.getRating())
-					{
-						cheapestRate=total;
-						name=getHotel.getName();
-						topRating=getHotel.getRating();
-					}
-					if(total<cheapestRate||topRating<getHotel.getRating())
-					{
-						cheapestRate=total;
-						name=getHotel.getName();
-						topRating=getHotel.getRating();
-					}
-				}
+				cheapestRate=total;
 			}
-		}
+			if(total<cheapestRate)
+			{
+				cheapestRate=total;
+			}
+		}});
+    	
+	
 		return name+" "+cheapestRate+" "+topRating;
 	}
 	public String BestRatedHotel()
