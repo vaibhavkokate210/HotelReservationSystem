@@ -59,9 +59,9 @@ public class HotelReservationTest
 	@Test
 	public void find_Cheapest_BestRated_Hotel_ForGivenDate()
 	{
-		String cheapHotel=hotelReservation.findCheapestTopRatedHotel(CustomerType.REGULAR,"11Sep2020","12Sep2020");
-		Assert.assertEquals("Bridgewood 220 4", cheapHotel);
-		System.out.println(cheapHotel);
+		String cheaperHotel=hotelReservation.findCheapestTopRatedHotel(CustomerType.REGULAR,"11Sep2020","12Sep2020");
+		Assert.assertEquals("Bridgewood 220 4", cheaperHotel);
+		System.out.println(cheaperHotel);
 	}
 	
 	@Test
