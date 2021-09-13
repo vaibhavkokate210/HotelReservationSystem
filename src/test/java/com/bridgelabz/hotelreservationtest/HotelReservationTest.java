@@ -39,7 +39,7 @@ public class HotelReservationTest
 		customerTypeMap=new HashMap<>();
 		customerTypeMap.put(CustomerType.REGULAR, new Rate(210,150));
 		customerTypeMap.put(CustomerType.REWARD, new Rate(100,40));
-		ridgewood=new Hotel("Ridgewood",5,customerTypeMap);
+		ridgewood=new Hotel("Ridgewood",4,customerTypeMap);
 		
 		hotelReservation.addHotel(lakewood);
 		hotelReservation.addHotel(bridgewood);
@@ -71,4 +71,5 @@ public class HotelReservationTest
 		Assert.assertEquals("Ridgewood 5", cheapHotel);
 		System.out.println(cheapHotel);
 	}
+	
 }
