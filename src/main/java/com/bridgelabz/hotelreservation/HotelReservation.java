@@ -135,4 +135,21 @@ public class HotelReservation
 		}
 		return name+" "+cheapestRate+" "+topRating;
 	}
+	public String BestRatedHotel()
+	{
+		String name=null;
+		int bestRating=0;
+		Iterator<Hotel> itr=hotel.iterator();
+		while(itr.hasNext())
+		{
+			Hotel getHotel=itr.next();
+			int best=getHotel.getRating();
+			if(best>bestRating)
+			{
+				bestRating=best;
+				name=getHotel.getName();
+			}
+		}
+		return name+" "+bestRating;
+	}
 }
